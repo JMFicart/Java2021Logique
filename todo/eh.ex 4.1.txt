@@ -9,4 +9,16 @@ Si la valeur est différente, un nouveau choix sera demandé.
 
 Solution
 --------
-       
+
+debut validation
+    variables locales
+       var valeur : N <- 0
+    fin variables locales
+    Afficher "Saisir la valeur :"
+    saisir valeur
+       tant que non(valeur = 0 ou valeur = 1 ou valeur = 2 ou valeur = 3 ou valeur = 4)   
+       afficher "Erreur, saisir une nouvelle valeur:"
+       saisir valeur
+    fin tant que
+    afficher "Félicitaiton !"
+fin validation            
