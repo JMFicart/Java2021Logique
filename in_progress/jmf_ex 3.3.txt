@@ -22,4 +22,8 @@ Exemple:
 
 Solution
 --------
- 
+debut coupure
+	variables locales
+	fin variables locales
+	
+fin coupure
