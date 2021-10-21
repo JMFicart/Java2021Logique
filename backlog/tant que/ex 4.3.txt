@@ -1,0 +1,18 @@
+4.3	Min max
+-----------
+
+Ecrire le programme qui calcule la plus grande et la plus petite valeur d'une série de nombres entrés au clavier.
+
+  •  La fin de la série sera annoncée par un 100. 
+  •  Le programme affichera également :
+     o  le plus grand;
+     o  le plus petit des nombres;
+     o  la position du premier maximum (optionnel);
+     o  la position du dernier maximum (optionnel);
+     o  le nombre d'occurrence du maximum (optionnel);
+     o  Idem pour le minimum (optionnel).
+
+-------------------------------------------------------------------------------------------
+
+Solution
+--------
