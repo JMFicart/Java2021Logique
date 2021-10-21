@@ -1,0 +1,34 @@
+3.1	Equation 1er degré
+----------------------
+
+Écrire le programme qui résout l’équation du 1er degré: ax + b = 0
+
+Le programme demande à l'utilisateur une valeur pour a et pour b et donne si possible la valeur de x.
+
+-------------------------------------------------------------------------------------------
+
+Solution
+--------
+debut equation1degre
+	variables locales
+		var a :n <- 0
+		var b :n <- 0
+	fin variables locales
+	
+	afficher "Variable a = "
+	saisir a
+	afficher "Variable b = "
+	saisir b
+	
+	si a != 0
+		alors
+			afficher "x = ", -b/a
+		sinon
+			si b = 0
+				alors
+					afficher "Equation indéterminée"
+				sinon
+					afficher "Equation impossible"
+			fin si
+	fin si
+fin equation1degre
