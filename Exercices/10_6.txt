@@ -27,7 +27,12 @@ procedure afficherresultat(in nombre1:n, in nombre2:n, in operation :c)
         cas '*'
             afficher "Résultat = ", nombre1 * nombre2
         cas '/'
-            afficher "Résultat = ", nombre1 / nombre2
+            si nombre2 != 0
+                alors
+                    afficher "Résultat = ", nombre1 / nombre2
+                sinon
+                    afficher "Division par zéro !"
+            fin si
         autre cas
             afficher "Mauvaise opération."
     fin cas ou

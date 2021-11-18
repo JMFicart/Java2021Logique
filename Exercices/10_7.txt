@@ -49,11 +49,11 @@ procedure ajouterpersonne(in/out personne :t [], in taille :n)
         var confirmation :c <- ' '
     fin variables locales
 
-    tant que cpt <= taille et personne[cpt] <> ""
-        cpt <- cpt + 1
+    tant que ptr <= taille et personne[ptr] <> ""
+        ptr <- ptr + 1
     fin tant que
 
-    si cpt <= taille
+    si ptr <= taille
         alors
             afficher "Entrez le nom de la personne = "
             saisir nouveaunom
