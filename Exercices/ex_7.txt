@@ -1,0 +1,156 @@
+debut minmaxvecteur
+    variables locales
+        var taille :n <- ...
+        var tab :n [taille]
+        var i :n <- 1
+        var vmin :n <- 0
+        var vmax :n <- 0
+        var pmin :n <- 0
+        var pmax :n <- 0
+    fin variables locales
+
+    // ex 7.2
+
+    vmax <- tab[1]
+    vmin <- tab[1]
+    pmin <- 1
+    pmax <- 1
+
+    pour i allant de 2 a taille par pas de 1
+        si tab[i] < vmin
+            alors
+                vmin <- tab[i]
+                pmin <- i
+            sinon
+                si tab[i] > vmax
+                    alors
+                        vmax <- tab[i]
+                        pmax <- i
+                fin si
+        fin si
+    i suivant
+
+    afficher "Plus petit nombre = ", vmin
+    afficher "Position du plus petit nombre = ", pmin
+    afficher "Plus grand nombre = ", vmax
+    afficher "Position du plus grand nombre = ", pmax
+fin minmaxvecteur
+
+
+debut vecteurx2
+    variables locales
+        var taille :n <- 16
+        var tab :n [taille]
+        var i :n <- 1
+    fin variables locales
+
+    // ex 7.3
+
+    tab[1] <- 1
+    afficher "Element 1 = ", tab[1]
+    pour i allant de 2 a taille par pas de 1
+        tab[i] <- tab[i - 1] * 2
+        afficher "Element " , i, " = ", tab[i]
+    i suivant
+
+fin vecteurx2
+
+
+debut inversionvecteur
+    variables locales
+        var taille :n <- 10
+        var tab :n [taille]
+        var i :n <- 1
+        var echange :n <- 0
+    fin variables locales
+
+    // ex 7.4
+
+    pour i allant de 1 a taille / 2 par pas de 1
+        echange <- tab[taille - i + 1]
+        tab[taille - i + 1] <- tab[i]
+        tab[i] <- echange
+    i suivant
+
+fin inversionvecteur
+
+
+debut supprimerespaces
+    variables locales
+        var taille :n <- ...
+        var tab :n [taille]
+        var i :n <- 1
+        var j :n <- 1
+        var nbreespace :n <- 0
+    fin variables locales
+
+    // ex 7.5
+
+    tant que i <= taille - nbreespace
+        si tab(i) = ' '
+            alors
+                pour j allant de i + 1 a taille par pas de 1
+                    tab[j - 1] <- tab[j]
+                j suivant
+
+                tab [taille] <- ' '
+
+                j <- i
+                tant que tab[j] != ' ' et j <= taille
+                    j <- j + 1
+                fin tant que
+
+                si j > taille
+                    alors
+                        nbreespace <- taille
+                fin si
+            sinon
+                i <- i + 1
+        fin si
+    fin tant que
+
+fin supprimerespaces
+
+
+debut copieplusoumoins
+    variables locales
+        var taille :n <- ...
+        var tab1 :n [taille]
+        var tab2 :b [taille]
+        var tab3 :n [taille]
+        var i :n <- 1
+    fin variables locales
+
+    // ex 7.6
+
+    pour i allant de 1 a taille par pas de 1
+        si tab2(i) = vrai
+            alors
+                tab3[i] <- tab1[i]
+            sinon
+                tab3[i] <- -tab1[i]
+        fin si
+    i suivant
+
+fin copieplusoumoins
+
+
+debut sommesuivant
+    variables locales
+        var taille :n <- 10
+        var tab :n [taille]
+        var i :n <- 1
+        var j :n <- 1
+    fin variables locales
+
+    // ex 7.7
+
+    pour i allant de 1 a taille - 1 par pas de 1
+        pour j allant de i a taille par pas de 1
+            tab[i] <- tab[i] + tab[j]
+        j suivant
+    i suivant
+
+fin sommesuivant
+
+

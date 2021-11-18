@@ -1,0 +1,347 @@
+debut recherchecaractere
+	variables locales
+		var inputtext :T <- ""
+		var inputchar :c <- ''
+		var firstpos :n <- -1
+		var lastpos :n <- -1
+		var occurences :n <- 0
+		var ptr :n <- 1
+		var longueurtexte :n <- 1
+	fin variables locales
+
+	//	Ex 6.1
+
+	afficher "Entrez un texte : "
+	saisir inputtext
+	longueurtexte <- longueur(inputtext)
+	afficher "Entrez un caractère : "
+	saisir inputchar
+	
+	si longueurtexte > 0
+		alors
+			si inputchar != ''
+				alors
+					pour ptr allant de 1 a longueurtexte par pas de 1
+						si inputchar = souschaine(inputtext, ptr, ptr + 1)
+							alors
+								occurences <- occurences + 1
+								si firstpos = -1
+									alors
+										firstpos <- ptr
+								fin si
+								lastpos <- ptr
+						fin si
+					ptr suivant
+					
+					si firstpos > -1
+						alors
+							afficher "Première position du caractère ", inputchar, " = ", firstpos
+							afficher "Dernière position du caractère ", inputchar, " = ", lastpos
+							afficher "Nombre d'occurences du caractère ", inputchar, " = ", occurences
+						sinon
+							afficher "Le caractère ", inputchar, " ne se trouve pas dans le texte !"
+					fin si
+				sinon
+					afficher "Il faut entrer un caractère !"
+			fin si
+		sinon
+			afficher "Il faut entrer un texte !"
+	fin si
+fin recherchecaractere
+
+
+debut recherchetexte
+	variables locales
+		var textesource :T <- ""
+		var texterecherche :T <- ""
+		var firstpos :n <- -1
+		var lastpos :n <- -1
+		var occurences :n <- 0
+		var ptr :n <- 0
+		var longueurtexte :n <- 1
+		var longueurtexterecherche :n <- 1
+	fin variables locales
+	
+	// Ex 6.2
+
+	afficher "Entrez le texte source : "
+	saisir textesource
+	longueurtexte <- longueur(textesource)
+
+	si longueurtexte > 0
+		alors
+			afficher "Entrez le texte à rechercher : "
+			saisir texterecherche
+			longueurtexterecherche <- longueur(texterecherche)
+
+			si longueurtexterecherche > 0
+				alors
+					pour ptr allant de 1 a longueurtexte par pas de 1
+						si texterecherche = souschaine(textesource, ptr, ptr + longueurtexterecherche)
+							alors
+								occurences <- occurences + 1
+								si firstpos = -1
+									alors
+										firstpos <- ptr
+								fin si
+								lastpos <- ptr
+						fin si
+					ptr suivant
+					
+					si firstpos > -1
+						alors
+							afficher "Première position du texte ", texterecherche, " = ", firstpos
+							afficher "Dernière position du texte ", texterecherche, " = ", lastpos
+							afficher "Nombre d'occurences du texte ", texterecherche, " = ", occurences
+						sinon
+							afficher "Le texte ", texterecherche, " ne se trouve pas dans le texte source !"
+					fin si
+				sinon
+					afficher "Il faut entrer un texte à rechercher !"
+			fin si
+		sinon
+			afficher "Il faut entrer un texte source !"
+	fin si
+fin recherchetexte
+
+
+debut rechercheremplacer
+	variables locales
+		var textesource :T <- ""
+		var texterecherche :T <- ""
+		var texteremplacement :T <- ""
+		var ptr :n <- 1
+		var longueurtexterecherche :n <- 1
+	fin variables locales
+	
+	// Ex 6.3
+
+	afficher "Entrez le texte source : "
+	saisir textesource
+	
+	si longueur(textesource) > 0
+		alors
+			afficher "Entrez le texte à rechercher : "
+			saisir texterecherche
+			longueurtexterecherche <- longueur(texterecherche)
+			
+			si longueurtexterecherche > 0
+				alors
+					afficher "Entrez le texte de remplacement : "
+					saisir texteremplacement
+					
+					si longueur(texteremplacement) > 0
+						alors
+							tant que ptr <= longueur(textesource) - longueurtexterecherche + 1
+								si texterecherche = souschaine(textesource, ptr, ptr + longueurtexterecherche)
+									alors
+										textesource <- souschaine(textesource, 1, ptr) + texteremplacement + souschaine(textesource, ptr + longueurtexterecherche, longueur(textesource) + 1)
+								fin si
+								ptr <- ptr + 1
+							fin tant que
+							
+						sinon
+							afficher "Il faut entrer un texte de remplacement !"
+					fin si
+				sinon
+					afficher "Il faut entrer un texte à rechercher !"
+			fin si
+		sinon
+			afficher "Il faut entrer un texte source !"
+	fin si
+fin rechercheremplacer
+
+
+debut sous_chaine
+	variables locales
+		var textesource :T <- ""
+		var chainextraite :T <- ""
+		var pdepart :n <- 0
+		var pfin :n <- 0
+		var ptr :n <- 1
+		var longueurtexte :n <- 1
+	fin variables locales
+	
+	// Ex 6.4
+
+	afficher "Entrez le texte source : "
+	saisir textesource
+	longueurtexte <- longueur(textesource)
+	
+	si longueurtexte > 0
+		alors
+			afficher "Entrez la position de départ : "
+			saisir pdepart
+
+			si pdepart > 0 et pdepart <= longueurtexte
+				alors
+					afficher "Entrez la position de fin : "
+					saisir pfin
+					
+					si pfin > pdepart et pfin <= longueurtexte
+						alors
+							pour ptr allant de pdepart a pfin - 1 par pas de 1
+								chainextraite <- chainextraite + caract(textesource, ptr)
+							ptr suivant
+
+							afficher "La chaîne extraite est ", chainextraite
+						sinon
+							afficher "La position de fin n'est pas correcte !"
+							afficher "Elle doit être > à ", pdepart, " et <= à ", longueur(textesource)
+					fin si
+				sinon
+					afficher "La position de départ n'est pas correcte !"
+					afficher "Elle doit être >= à 1 et <= à ", longueur(textesource)
+			fin si
+		sinon
+			afficher "Il faut entrer un texte source !"
+	fin si
+fin sous_chaine
+
+
+debut plusgrand
+	variables locales
+		var texte1 :T <- ""
+		var texte2 :T <- ""
+		var ptr :n <- 1
+		var resultat :b <- vrai
+		var longueurtexte1 :n <- 1
+		var longueurtexte2 :n <- 1
+	fin variables locales
+
+	// Ex 6.5
+
+	afficher "Entrez le premier texte : "
+	saisir texte1
+	longueurtexte1 <- longueur(texte1)
+
+	si longueurtexte1 > 0
+		alors
+			afficher "Entrez le second texte : "
+			saisir texte2
+			longueurtexte2 <- longueur(texte2)
+
+			si longueurtexte2 > 0
+				alors
+					repeter
+						si caract(texte1, ptr) < caract(texte2, ptr)
+							alors
+								resultat = faux
+						fin si
+						ptr <- ptr + 1
+					jusqu'a ce que ptr > longueurtexte1 or ptr > longueurtexte2 or resultat = faux
+
+					afficher "Résultat : ", resultat
+				sinon
+					afficher "Il faut entrer un texte !"
+			fin si
+		sinon
+			afficher "Il faut entrer un texte !"
+	fin si
+fin plusgrand
+
+
+debut inversioncaracteres
+	variables locales
+		var texte1 :T <- ""
+		var texte2 :T <- ""
+		var ptr :n <- 1
+		var longueurtexte :n <- 1
+	fin variables locales
+
+	// Ex 6.6
+
+	afficher "Entrez le texte à inverser : "
+	saisir texte1
+	longueurtexte <- longueur(texte1)
+
+	si longueurtexte > 0
+		alors
+			pour ptr allant de 1 a longueurtexte par pas de 1
+				texte2 = caract(texte1, ptr) + texte2
+			ptr suivant
+			
+			afficher "Texte inversé : ", texte2
+		sinon
+			afficher "Il faut entrer un texte !"
+	fin si
+fin inversioncaracteres
+
+
+debut inversionmot
+	variables locales
+		var texte1 :T <- ""
+		var texte2 :T <- ""
+		var debut :n <- 1
+		var fin :n <- 1
+		var longueurtexte :n <- 1
+	fin variables locales
+
+	// Ex 6.7
+
+	afficher "Entrez le texte à inverser : "
+	saisir texte1
+	longueurtexte <- longueur(texte1)
+	
+	si longueurtexte > 0
+		alors
+			pour fin allant de 1 a longueurtexte par pas de 1
+				si caract(texte1, fin) = ' '
+					alors
+						texte2 = souschaine(texte1, debut, fin) + ' ' + texte2
+						debut <- fin + 1
+				fin si
+			fin suivant
+			texte2 = souschaine(texte1, debut, fin) + ' ' + texte2
+			
+			afficher "Texte inversé : ", texte2
+		sinon
+			afficher "Il faut entrer un texte !"
+	fin si
+fin inversionmot
+
+
+debut inversionlettremot
+	variables locales
+		var texte1 :T <- ""
+		var texte2 :T <- ""
+		var mot :T <- ""
+		var ptr :n <- 1
+		var debut :n <- 1
+		var fin :n <- 1
+		var longueurtexte :n <- 1
+	fin variables locales
+
+	// Ex 6.8
+
+	afficher "Entrez le texte à inverser : "
+	saisir texte1
+	longueurtexte <- longueur(texte1)
+	
+	si longueurtexte > 0
+		alors
+			pour fin allant de 1 a longueurtexte par pas de 1
+				si caract(texte1, fin) = ' '
+					alors
+						mot <- souschaine(texte1, debut, fin)
+						pour ptr allant de longueur(mot) a 1 par pas de -1
+							texte2 = texte2 + caract(mot, ptr)
+						ptr suivant
+						texte2 <- texte2 + ' '
+						
+						debut <- fin + 1
+				fin si
+			fin suivant
+			
+			mot <- souschaine(texte2, debut, fin)
+			pour ptr allant de longueur(mot) a 1 par pas de -1
+				texte2 = texte2 + caract(mot, ptr)
+			ptr suivant
+
+			afficher "Texte inversé : ", texte2
+		sinon
+			afficher "Il faut entrer un texte !"
+	fin si
+fin inversionlettremot
+
+

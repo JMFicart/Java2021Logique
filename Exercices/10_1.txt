@@ -1,0 +1,21 @@
+debut 10_1
+    // -ecrire un programme qui demande 2 nombres et affiche leur sommes
+    variables locales
+        var nombre1 :n <- 0
+        var nombre2 :n <- 0
+    fin variables locales
+
+    afficher "Nombre 1 = "
+    saisir nombre1
+
+    afficher "Nombre 2 = "
+    saisir nombre2
+
+    afficher "Somme = ", somme2nombre(nombre1, nombre2)
+fin 10_1
+
+fonction somme2nombre(in nombre1 :n, in nombre2 :n):n
+    retourne nombre1 + nombre2
+fin somme2nombre
+
+

@@ -24,6 +24,9 @@ Solution
 --------
 debut coupure
 	variables locales
+		var montant :n <- 0
+		var solde :n <- 0
 	fin variables locales
 	
 fin coupure
+

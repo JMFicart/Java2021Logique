@@ -1,0 +1,36 @@
+debut 10_6
+    // -ecrire un programme qui functionne comme une calculette (rentre 2 nombres et puis rendre l'operateur et avoir le resultat)
+    variables locales
+        var nombre1 :n <- 0
+        var nombre2 :n <- 0
+        var operation :c <- ' '
+    fin variables locales
+
+    afficher "Nombre 1 = "
+    saisir nombre1
+
+    afficher "Nombre 2 = "
+    saisir nombre2
+
+    afficher "Opération = "
+    saisir operation
+
+    afficherresultat(nombre1, nombre2, operation)
+fin 10_6
+
+procedure afficherresultat(in nombre1:n, in nombre2:n, in operation :c)
+    cas ou operation
+        cas '+'
+            afficher "Résultat = ", nombre1 + nombre2
+        cas '-'
+            afficher "Résultat = ", nombre1 - nombre2
+        cas '*'
+            afficher "Résultat = ", nombre1 * nombre2
+        cas '/'
+            afficher "Résultat = ", nombre1 / nombre2
+        autre cas
+            afficher "Mauvaise opération."
+    fin cas ou
+fin afficherresultat
+
+

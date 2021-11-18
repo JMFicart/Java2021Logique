@@ -1,0 +1,143 @@
+debut 10_7
+    // -ecrire un programme où on peut enregistre 20 personnes et a l'aide d'un menu, on peut ajouter/ modifier / supprime /affiche /quitter
+    afficher_menu
+fin 10_7
+
+procedure afficher_menu()
+    variables locales
+        var taille :n <- 20
+        var personne :t [taille]
+        var fintrt :b <- faux
+        var choix :n <- 0
+    fin variables locales
+
+    tant que fintrt = faux
+        afficher "Menu"
+        afficher "1 - Ajouter"
+        afficher "2 - Modifier"
+        afficher "3 - Supprimer"
+        afficher "4 - Afficher"
+        afficher "5 - Quitter"
+        saisir choix
+
+        cas ou choix
+            cas 1
+                // Ajout
+                ajouterpersonne(personne[], taille)
+            cas 2
+                modifierpersonne(personne[], taille)
+            cas 3
+                // Supprimer
+                supprimerpersonne(personne[], taille)
+            cas 4
+                // Afficher
+                afficherpersonnes(personne[], taille)
+            cas 5
+                // Fin de traitement
+                fintrt <- vrai
+            autre cas
+                afficher "Mauvaise option"
+        fin cas ou
+    fin tant que
+fin afficher_menu
+
+
+procedure ajouterpersonne(in/out personne :t [], in taille :n)
+    variables locales
+        var ptr :n <- 1
+        var nouveaunom :T <- ""
+        var confirmation :c <- ' '
+    fin variables locales
+
+    tant que cpt <= taille et personne[cpt] <> ""
+        cpt <- cpt + 1
+    fin tant que
+
+    si cpt <= taille
+        alors
+            afficher "Entrez le nom de la personne = "
+            saisir nouveaunom
+
+            afficher "Confirmez-vous l'ajout de cette personne ? (Y/N) "
+            saisir confirmation
+
+            si confirmation = 'Y'
+                alors
+                    personne[ptr] <- nouveaunom
+            fin si
+        sinon
+            afficher "Plus de place !"
+    fin si
+fin ajouterpersonne
+
+
+procedure modifierpersonne(in/out personne :t [], in taille :n)
+    variables locales
+        var ptr :n <- 0
+        var modif :T <- ""
+        var confirmation :c <- ' '
+    fin variables locales
+
+    afficher "Entrez le numéro de la personne = "
+    saisir ptr
+
+    si ptr >= 1 and ptr <= taille
+        alors
+            afficher personne[ptr]
+            afficher ""
+            afficher "Entrez la modification = "
+            saisir modif
+
+            afficher "Confirmez-vous la modification de cette personne ? (Y/N) "
+            saisir confirmation
+
+            si confirmation = 'Y'
+                alors
+                    personne[ptr] <- modif
+            fin si
+        sinon
+            afficher "N° non valide !"
+    fin si
+fin modifierpersonne
+
+
+procedure supprimerpersonne(in/out personne :t [], in taille :n)
+    variables locales
+        var ptr :n <- 0
+        var confirmation :c <- 'N'
+    fin variables locales
+
+    afficher "Entrez le numéro de la personne = "
+    saisir ptr
+    si ptr >= 1 and ptr <= taille
+        alors
+            afficher "Confirmez-vous la suppression de cette personne ? (Y/N) "
+            saisir confirmation
+
+            si confirmation = 'Y'
+                alors
+                    tant que ptr < taille
+                        personne[ptr] <- personne[ptr + 1]
+                        ptr <- ptr + 1
+                    fin tant que 
+                    personne[ptr] = ""
+            fin si
+        sinon
+            afficher "N° non valide !"
+    fin si
+fin supprimerpersonne
+
+
+procedure afficherpersonnes(in personne :t [], in taille :n)
+    variables locales
+        var ptr :n <- 0
+    fin variables locales
+
+    pour ptr allant de 1 a taille par pas de 1
+        si personne[ptr] != ""
+            alors
+                afficher ptr, "  ", personne[ptr]
+        fin si
+    ptr suivant
+fin afficherpersonnes
+

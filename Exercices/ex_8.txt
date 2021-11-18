@@ -1,0 +1,101 @@
+debut tablemultiplication
+    variables locales
+        var i :n <- 1
+        var j :n <- 1
+    fin variables locales
+
+    // ex 8.1
+
+    pour i allant de 1 a 10 par pas de 1
+        afficher "Table de multiplication de ", i
+        pour j allant de 1 a 10 par pas de 1
+            afficher i, " X ", j, " = ", i * j
+        j suivant
+        afficher ""
+    i suivant
+
+fin tablemultiplication
+
+
+debut compteurdigital
+    variables locales
+        var i :n <- 0
+        var j :n <- 0
+        var k :n <- 0
+    fin variables locales
+
+    // ex 8.2
+
+    pour i allant de 0 a 9 par pas de 1
+        pour j allant de 0 a 9 par pas de 1
+            pour k allant de 0 a 9 par pas de 1
+                afficher i, j, k
+            k suivant
+        j suivant
+    i suivant
+
+fin compteurdigital
+
+
+debut nombresparfaits
+    variables locales
+        var i :n <- 0
+        var j :n <- 0
+        var k :n <- 0
+    fin variables locales
+
+    // ex 8.3
+
+    pour i allant de 1 a 100 par pas de 1
+        k <- 0
+        pour j allant de 1 a i - 1 par pas de 1
+            si i mod j = 0
+                alors
+                    k <- k + j
+            fin si
+        j suivant
+
+        si k = i
+            alors
+                afficher i
+        fin si
+    i suivant
+
+fin nombresparfaits
+
+
+debut nombrespremiers
+    variables locales
+        var i :n <- 1
+        var j :n <- 0
+        var k :n <- 0
+        var premier :b <- vrai
+    fin variables locales
+
+    // ex 8.4
+
+    j <- 1
+    tant que i <= 100
+        premier <- vrai
+        k <- 1
+
+        tant que premier = vrai et k <= j
+            si j mod k = 0 et k != 1 et k != j
+                alors 
+                    premier <- faux
+                sinon
+                    k <- k + 1
+            fin si
+        fin tant que
+
+        si premier = vrai
+            alors
+                afficher j
+                i <- i + 1
+        fin si
+
+        j <- j + 1
+    fin tant que
+fin nombrespremiers
+
+
