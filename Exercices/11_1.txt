@@ -19,11 +19,11 @@ debut 11_1
     saisir tempmax
 
     tant que ptr <= 10
-        si fichepays[ptr].tempmin = tempmin
+        si fichepays[ptr].tmin = tempmin
             alors
                 afficher "Le pays trouvé avec la température minima est ", fichepays[ptr].pays
             sinon
-                si fichepays[ptr].tempmax = tempmax
+                si fichepays[ptr].tmax = tempmax
                     alors
                         afficher "Le pays trouvé avec la température maxima est ", fichepays[ptr].pays
                 fin si
@@ -33,5 +33,78 @@ debut 11_1
     fin tant que
 
 fin 11_1
+
+
+debut 11_1a
+    // - écrire un programme où on a une liste de 10 pays avec le nom du pays, la température max et min et pouvoir trouver le pays avec la température min et max
+    variables locales
+        var taille :n <- 10
+        var tempmin :n <- 0
+        var tempmax :n <- 0
+        var paysmin :T <- ""
+        var paysmax :T <- ""
+        var fichepays [taille] :structpays
+        var ptr :n <- 0
+    fin variables locales
+
+    tant que ptr < taille
+        si ptr = 0
+            alors
+                tempmin <- fichepays[ptr].tmin
+                tempmax <- fichepays[ptr].tmax
+                paysmin <- fichepays[ptr].pays
+                paysmax <- fichepays[ptr].pays
+            sinon
+                si fichepays[ptr].tmin < tempmin
+                    alors
+                        tempmin <- fichepays[ptr].tmin
+                        paysmin <- fichepays[ptr].pays
+                    sinon
+                        si fichepays[ptr].tmax > tempmax
+                            alors
+                                tempmax <- fichepays[ptr].tmax
+                                paysmax <- fichepays[ptr].pays
+                        fin si
+                fin si
+        fin si
+        ptr <- ptr + 1
+    fin tant que
+
+    afficher "Le pays trouvé avec la température minima ", tempmin, " est ", paysmin
+    afficher "Le pays trouvé avec la température maxima ", tempmax, ' est ", paysmax
+fin 11_1a
+
+
+debut 11_1b
+    // - écrire un programme où on a une liste de 10 pays avec le nom du pays, la température max et min et pouvoir trouver le pays avec la température min et max
+    variables locales
+        var taille :n <- 10
+        var ptr :n <- 1
+        var ptrmin :n <- 1
+        var ptrmax :n <- 1
+        var fichepays [taille] :structpays
+    fin variables locales
+
+    pour ptr allant de 0 a taille - 1 par pas de 1
+        si ptr > 0
+            alors
+                si fichepays[ptr].tmin < fichepays[ptrmin].tmin
+                    alors
+                        ptrmin <- ptr
+                    sinon
+                        si fichepays[ptr].tmax > fichepays[ptrmax].tmax
+                            alors
+                                ptrmax <- ptr
+                        fin si
+                fin si
+            sinon
+                ptrmin <- ptr
+                ptrmax <- ptr
+        fin si
+    ptr suivant
+
+    afficher "Le pays trouvé avec la température minima ", fichepays[ptrmin].tmin, " est ", fichepays[ptrmin].pays
+    afficher "Le pays trouvé avec la température maxima ", fichepays[ptrmax].tmax, ' est ", fichepays[ptrmax].pays
+fin 11_1b
 
 
