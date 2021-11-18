@@ -1,0 +1,38 @@
+structure structcombattant
+    var nom :t
+    var pv :n
+    var endurance :n
+    var force :n
+finstructure
+
+debut 11_2
+    // - écrire un programme ou un héro et un méchant se battent, ils ont des pv et une endurance, leur force est calculée par rapport à leur (pv * endurance)²/pv, 
+    // affiche chaque tour avec leur pv restant et affiche le gagnant
+
+    variables locales
+        var hero :structcombattant
+        var mechant :structcombattant
+        var tour :n <- 1
+    fin variables locales
+
+    tant que hero.pv > 0 et mechant.pv > 0
+        hero.force <- (hero.pv * hero.endurance)^2/hero.pv
+        mechant.force <- (mechant.pv * mechant.endurance)^2/mechant.pv
+        
+        afficher tour, " Héro pv restants = ", hero.pv, "     Méchant pv restants = ", mechant.pv
+
+        tour <- tour + 1
+
+        hero.pv <- hero.pv - mechant.force
+        mechant.pv <- mechant.pv - hero.force
+    fin tant que
+
+    si hero.pv <= 0
+        alors
+            afficher "Le méchant est gagnant"
+        sinon
+            afficher "Le héro est gagnant"
+    fin si
+fin 11_2
+
+

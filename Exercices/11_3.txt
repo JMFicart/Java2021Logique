@@ -1,0 +1,9 @@
+structure structclient
+
+finstructure
+
+debut 11_3
+    // - écrire un programme avec une structure client, liste d'achat, date, article et on sait quel article le client a acheté avec la date et on peut ajouter/modifier/effacer/afficher
+fin 11_3
+
+

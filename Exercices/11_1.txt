@@ -1,0 +1,37 @@
+structure structpays
+    var pays :t
+    var tmin :n
+    var tmax :n
+finstructure
+
+debut 11_1
+    // - écrire un programme où on a une liste de 10 pays avec le nom du pays, la température max et min et pouvoir trouver le pays avec la température min et max
+    variables locales
+        var tempmin :n <- 0
+        var tempmax :n <- 0
+        var fichepays [10] :structpays
+        var ptr :n <- 1
+    fin variables locales
+
+    afficher "Entrez la température minima = "
+    saisir tempmin
+    afficher "Entrez la température maxima = "
+    saisir tempmax
+
+    tant que ptr <= 10
+        si fichepays[ptr].tempmin = tempmin et fichepays[ptr].tempmax = tempmax
+            alors
+                afficher "Le pays trouvé est ", fichepays[ptr].pays
+                ptr <- 15
+            sinon
+                ptr <- ptr + 1
+        fin si
+    fin tant que
+
+    si ptr = 11
+        alors
+            afficher "Pas de pays correspondant aux critères entrés !"
+    fin si
+fin 11_1
+
+
