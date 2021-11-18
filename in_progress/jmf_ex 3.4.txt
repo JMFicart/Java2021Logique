@@ -12,4 +12,8 @@ Attention :
 
 Solution
 --------
- 
+
+debut 3_4
+	variables locales
+	fin variables locales
+fin 3_4
