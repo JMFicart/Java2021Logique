@@ -19,19 +19,19 @@ debut 11_1
     saisir tempmax
 
     tant que ptr <= 10
-        si fichepays[ptr].tempmin = tempmin et fichepays[ptr].tempmax = tempmax
+        si fichepays[ptr].tempmin = tempmin
             alors
-                afficher "Le pays trouvé est ", fichepays[ptr].pays
-                ptr <- 15
+                afficher "Le pays trouvé avec la température minima est ", fichepays[ptr].pays
             sinon
-                ptr <- ptr + 1
+                si fichepays[ptr].tempmax = tempmax
+                    alors
+                        afficher "Le pays trouvé avec la température maxima est ", fichepays[ptr].pays
+                fin si
         fin si
+
+        ptr <- ptr + 1
     fin tant que
 
-    si ptr = 11
-        alors
-            afficher "Pas de pays correspondant aux critères entrés !"
-    fin si
 fin 11_1
 
 
